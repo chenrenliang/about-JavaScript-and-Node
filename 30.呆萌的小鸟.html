@@ -1,0 +1,71 @@
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+    }
+    .sprite {
+        display: inline-block;
+        overflow: hidden;
+        background-repeat: no-repeat;
+        background-image: url(https://p1.ssl.qhimg.com/d/inn/0f86ff2a/8PQEganHkhynPxk-CUyDcJEk.png);
+        width:86px;
+        height: 60px;
+    }
+    .bird0 {
+        background-position: -178px -2px;
+    }
+    .bird1 {
+        background-position: -90px -2px;
+    }
+    .bird2 {
+        background-position: -2px -2px;
+    }
+    #bird {
+        position: absolute;
+        left: 100px;
+        top: 100px;
+        transform: scale(0.5);
+        transform-origin: -50% -50%;
+    }
+</style>
+<script src="https://s1.ssl.qhres.com/!bd39e7fb/animator-0.2.0.min.js"></script>
+<div id="bird" class="sprite bird1"></div>
+<script>
+    var i = 0
+    setInterval(function(){
+        bird.className = 'sprite ' + 'bird' + ((i++) % 3)
+    }, 1000 / 10)
+
+    function debounce(fn, dur) {
+        dur = dur || 100
+        let timer 
+
+        return function(){
+            clearTimeout(timer)
+            timer = setTimeout(() => {
+                fn.apply(this, arguments)
+            }, dur) //dur后才会清除定时器 
+            //点击了就立即清除定时器，重新设置定时器 => 效果时点击后才会触发，
+        };
+    }
+
+    document.addEventListener('mousemove', debounce(function(evt){
+        let  x = evt.clientX,
+            y = evt.clientY,
+            x0 = bird.offsetLeft,
+            y0 = bird.offsetTop
+
+        console.log(x, y)    
+
+        let a1 = new Animator(1000, function(ep) {
+            bird.style.top = y0 + ep * (y - y0) + 'px'
+            bird.style.left = x0 + ep * (x - x0) + 'px'
+        }, p => p * p)
+
+        a1.animate()
+    }, 100))
+
+
+
+
+</script>

@@ -1,0 +1,51 @@
+<style>
+    #ball {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: red;
+        position: absolute;
+        left: 100px;
+        top: 100px;
+    }
+
+</style>
+<div id="ball"></div>
+<script>
+    
+    console.log(0.2 + 0.4) //0.600000000001 IEEE754
+
+    console.log(((0.2 + 0.4) * 100).toPrecision(2)) //60
+
+    console.log(((0.2 + 0.4) * 100).toFixed(2)) //60.00
+
+    const ball = document.getElementById('ball')
+
+    const distance = 100, duration = 2000;
+
+    ball.onclick = function(){
+        var startTime = Date.now()
+
+        requestAnimationFrame(function update() {
+            var p = (Date.now() - startTime) / 1000;
+
+            ball.style.transform = `translateX(${distance * p}px)`;
+
+            console.log(p, distance)
+
+            if(p <= 1) { ////不应当用相等比较浮点数！！
+                requestAnimationFrame(update)
+            }
+
+        })
+    }
+
+
+
+
+
+
+
+
+</script>

@@ -1,0 +1,24 @@
+<style>
+    .state1 {
+        
+        background: red;
+    }
+    .state2{
+        transition: all 1s ease;
+        background: green;
+    }
+
+</style>
+<body>
+    <script>
+        function setBodyState(state){
+            document.body.className = state;
+        }
+
+        setBodyState.call(null, 'state1')
+
+        setTimeout(setBodyState.bind(null, 'state2'), 500)
+
+
+    </script>
+</body>

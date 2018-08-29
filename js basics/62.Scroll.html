@@ -1,0 +1,50 @@
+<style>
+    #scrollView {
+        height: 150px;
+        overflow: scroll;
+    }
+
+</style>
+<div id="scrollView">
+    <ul>
+        <li>content</li>
+    <li>content</li>
+    <li>content</li>
+    <li>content</li>
+    <li>content</li>
+    <li>content</li>
+    <li>content</li>
+    <li>content</li>
+    <li>content</li>
+    <li>content</li>
+    <li>content</li>
+    <li>content</li>
+    <li>content</li>
+    <li>content</li>
+    <li>content</li>
+    <li>content</li>
+    <li>content</li>
+    <li>content</li>
+    <li>content</li>
+    <li>content</li>
+    <li>content</li>
+    <li>content</li>
+    <li>content</li>
+    <li>content</li>
+    </ul>
+</div>
+<div id="messageView"></div>
+
+<script>
+    const scrollView = document.getElementById('scrollView')
+    const messageView = document.getElementById('messageView')
+
+    function output(msg){
+        messageView.innerHTML += `<div>scrollTop: ${msg} </div>`
+    }
+
+    scrollView.addEventListener('scroll', evt => {
+        output(evt.target.scrollTop)
+    })
+
+</script>

@@ -1,0 +1,60 @@
+<style>
+    #ball{
+        display: inline-block;
+        background: gray;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 50px;
+        color: white;
+    }
+    #ball:hover {
+        cursor: pointer;
+    }
+    @keyframes blink {
+        0%{
+            background: #fff;
+        }
+        50%{
+            background: #f00;
+        }
+        100%{
+            background: #fff;
+        }
+    }
+
+    #ball.warn {
+        animation: blink 1s ease 7s 3 forwards normal;
+    }
+</style>
+<div id="ball">10</div>
+<script>
+    const ball = document.getElementById('ball')
+
+    ball.addEventListener('click', function(){
+        const startTime = Date.now();
+
+        var timer = setInterval(function step(){
+            // let now = Date.now();
+            // let p = ((now - startTime) / 1000)
+
+            // console.log(p)
+            // ball.innerHTML = 10 - Math.floor(p);
+
+            // if(p >= 10) clearInterval(timer)
+            var t = 10 - Math.round((Date.now() - startTime) / 1000)
+
+            ball.innerHTML = Math.max(t, 0)
+
+            if(t <= 0) clearInterval(timer)
+
+
+        }, 1000)
+
+        ball.className = 'warn'
+
+    })
+
+
+</script>

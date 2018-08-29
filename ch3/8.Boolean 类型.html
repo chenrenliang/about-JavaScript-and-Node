@@ -1,0 +1,40 @@
+<style>
+    button {
+        font-size: 24px;
+    }
+
+    label.tip {
+        display: block;
+    }
+</style>
+<body>
+    
+    <button>add a tip</button>
+<script>
+ var result = 1 && 2;
+ console.log([result, !!result]) //2  true
+
+ var list = [1,,2,,,4,5,0,9]
+ list = list.filter(item => item) //跳过empty slot 然后0 被过滤掉 0 => return 0
+
+ console.log(list) //[1,2,4,5,9]
+
+ function showTip(tip) {
+     tip = tip || 'This is a tip'
+     console.log(tip)
+
+     var label = document.createElement('label')
+     label.className = 'tip'
+
+     label.innerHTML = tip;
+
+     document.body.appendChild(label)
+ }
+
+ document.querySelector('button').onclick = showTip.bind(null, '')
+
+
+
+
+</script>
+</body>

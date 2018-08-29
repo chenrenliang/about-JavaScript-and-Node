@@ -1,0 +1,40 @@
+
+<script>
+    function Point2D(x, y){
+        this.x = x;
+        this.y = y;
+    }
+
+    Point2D.prototype.showLength = function(){
+        var length = Math.sqrt(this.x ** 2 + this.y ** 2)
+        console.log(length)
+    }
+
+    Point2D.prototype.showLengthAsync = function(){
+        var self = this;
+
+        setTimeout(function(){
+            self.showLength()
+        }, 1000)
+
+    }
+
+    var x = 30, y = 40;
+    var p = new Point2D(3, 4)
+
+    var f = Point2D.prototype.showLength; //指向那个匿名函数
+    f(); //window.f() => 50
+
+    setTimeout(p.showLength, 500) //window.setTimeout(那个匿名函数, 500)
+    //50
+
+    p.showLengthAsync(); // 外层的self => this => p
+    //p.showLength() => 5
+
+
+
+
+
+
+
+</script>

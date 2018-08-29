@@ -1,0 +1,46 @@
+<style>
+#circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: red;
+    line-height: 50px;
+    text-align: center;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.25s;
+}
+#circle.fade {
+    opacity: 0;
+    transition: opacity 0.25s;
+}
+</style>
+<button id="btn">点我</button>
+
+<div id="circle">0</div>
+<script>
+function throttle(fn, time = 500) {
+    let timer
+    return function(...args) {
+        if(timer == null) {
+            fn.apply(this, args)
+
+            timer = setTimeout(() => {
+                timer = null
+            }, time) //time后才把timer置空  在0~time之间 不会再调用fn
+        }
+    };
+}
+
+btn.onclick = throttle(function(e){
+    circle.innerHTML = parseInt(circle.innerHTML) + 1
+    circle.className = 'fade'
+
+    setTimeout(() => circle.className = '', 250)
+})
+
+
+
+
+
+</script>

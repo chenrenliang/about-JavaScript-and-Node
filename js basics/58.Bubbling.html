@@ -1,0 +1,45 @@
+<style>
+#outer {
+    width: 200px;
+    height: 200px;
+    background-color: green;
+    opacity: 0.8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#inner {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background-color: #3ff;
+    opacity: 0.8;
+}
+#outer:hover, #inner:hover{
+    opacity: 1.0;
+}
+</style>
+<div id="outer">
+    <div id="inner"></div>
+</div>
+<pre id="output">
+    output: 
+</pre>
+
+<script>
+    const [outer, inner ] = document.querySelectorAll('#outer, #inner')
+    const output = document.getElementById('output')
+
+    function print(msg){
+        output.innerHTML += '\n' + msg; 
+    }
+
+    [document.body, outer, inner].forEach(el => {
+        el.addEventListener('click', evt => {
+            print(`${el.tagName}: ${el.id} clicked!`)
+        }, false)
+    })
+
+
+
+</script>

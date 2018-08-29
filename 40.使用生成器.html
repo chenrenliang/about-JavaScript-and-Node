@@ -1,0 +1,67 @@
+<style>
+#switcher {
+  display: inline-block;
+  background-color: black;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 50%;
+  text-align: center;
+  cursor: pointer;
+}
+
+#switcher.on {
+  background-color: green;
+}
+
+#switcher.warn {
+  background-color: yellow;
+}
+
+#switcher.off {
+  background-color: red;
+}
+
+#switcher.on:after {
+  content: 'on';
+  color: white;
+}
+
+#switcher.warn:after {
+  content: 'warn';
+  color: black;
+}
+
+#switcher.off:after {
+  content: 'off';
+  color: white;
+}
+
+</style>
+<div id="switcher" class="on"></div>
+<script>
+    function *loop(list, max = Infinity) {
+        let i = 0
+
+        while(i < max) {
+            yield list[i++ % list.length] //yield出每一个
+        }
+    }
+
+    function toggle(...actions) {
+        let action = loop(actions) //生成器() => 一个迭代器
+        return function(...args) {
+            return action.next().value.apply(this, args)
+        }
+    }
+
+    switcher.onclick = toggle(
+        evt => evt.target.className = 'warn',
+        evt => evt.target.className = 'off',
+        evt => evt.target.className = 'on'
+    )
+
+
+
+
+</script>

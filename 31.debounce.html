@@ -1,0 +1,35 @@
+<script src="https://lib.baomitu.com/axios/0.16.2/axios.js"></script>
+<div>
+<input id="t" name="t" value="hello" type="text">
+<input id="submitBtn" type="submit">
+</div>
+<img id="gaobai" alt="未加载图片">
+<script>
+    function debounce(fn) {
+        let timer = null 
+        return function(...args) {
+            if(timer != null) {
+                clearTimeout(timer)
+            }
+
+            timer = setTimeout(() => {
+                fn.apply(this, args)
+            }, 300) //300ms后才会执行 如果 0~300之间继续点击 那么会重新设置一个timer 而且延时为300
+        };
+    }
+
+    const api = 'https://test.h5jun.com/index/gaobai?text='
+
+    submitBtn.onclick = debounce(async function(evt) {
+        evt.preventDefault()
+
+        console.log('submit')
+
+        let { data } = await axios.get(api + t.value)
+
+        gaobai.src = 'data:image/jpeg;base64,' + data.data 
+        console.log('data:image/jpeg;base64,' + data.data ) 
+    })
+
+
+</script>

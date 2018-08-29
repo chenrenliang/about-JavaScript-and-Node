@@ -1,0 +1,69 @@
+<style>
+    #fullview {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5)
+    }
+    #fullview.hide {
+        display: none;
+    }
+    #fullview img {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #imgview > a {
+        color: white;
+        float: right;
+        margin-right: 12px;
+        font-size: 16px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+
+</style>
+
+<div id="imgview">
+    <a href="https://p1.ssl.qhimg.com/t011fc0874f56b37ed4.jpg">
+        <img src="https://p1.ssl.qhimg.com/t011fc0874f56b37ed4.jpg" alt="">
+    </a>
+</div>
+<div id="fullview" class="hide">
+    <img src="https://p1.ssl.qhimg.com/t011fc0874f56b37ed4.jpg" alt="">
+</div>
+
+<script>
+    const imgView = document.getElementById('imgview')
+    const fullView = document.getElementById('fullview')
+
+    imgView.addEventListener('click', evt => {
+            // console.log(evt.target.tagName)
+            
+            fullView.className = ''
+            evt.preventDefault();
+            
+    })
+
+    fullView.addEventListener('click', evt => {
+        // console.log(evt.target.tagName)
+        // if(evt.target.tagName !== 'IMG'){
+        //     fullView.className = 'hide'
+        // }
+        
+
+        console.log(evt.target.tagName) //要么是IMG 要么是DIV
+        evt.target.className = 'hide'
+        // IMG.className = 'hide'
+        // DIV.className = 'hide'
+
+        //
+    })
+
+
+</script>

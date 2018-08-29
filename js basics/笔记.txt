@@ -1,0 +1,40 @@
+﻿2. Null type
+   The value null represents the intentional absence of any object value. 
+
+let timeoutTimer = null   //这里timeoutTimer期待一个object，因此用null初始化比较合理
+
+function fetchData(req, timeout = 10000){
+    return new Promise((resolve, reject) => {
+        timeoutTimer = setTimeout(() => {
+            reject()
+        }, timeout) //timeout去请求
+
+        fetch(req).then(res => {
+            clearTimeout(timeoutTimer)
+            resolve(res.body)
+        })
+    })
+}
+
+3.布尔类型转换
+0、''、null、undefined 被转换为 false，其他转为 true
+
+
+10. Tagged String  ****
+
+变量声明与作用域
+    const 声明一个常量，其初始化的标识符在运行时绑定的引用不再修改
+    let 声明一个变量，其初始化的标识符在运行时绑定的引用可随时修改
+    var 声明一个变量，ES5之前的用法，现在不推荐使用
+
+
+---to be continued  
+
+
+
+Babel http://babeljs.io/
+ESLint https://github.com/eslint/eslint
+
+动态类型+弱类型
+
+原型继承的弊端——参数的延迟构造

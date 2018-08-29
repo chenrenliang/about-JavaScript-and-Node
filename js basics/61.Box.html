@@ -1,0 +1,82 @@
+<style>
+    html,body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  p {
+    margin: 0;
+    padding: 0;
+  }
+  
+  #outer {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    background: blue;
+    text-align: center;
+    border: solid 5px green;
+  }
+  
+  #inner {
+    display: inline-block;
+    width: 100px;
+    height: 100%;
+    background: red;
+    overflow: scroll;
+    border: solid 5px green;
+  }
+  
+</style>
+<p id="atext">This is a text</p>
+
+<div id="outer">
+  <div id = "inner">
+    <p>aaa</p>
+    <p>aaa</p>
+    <p>aaa</p>
+    <p>aaa</p>
+    <p>aaa</p>
+    <p>aaa</p>
+    <p>aaa</p>
+    <p>aaa</p>
+    <p>aaa</p>
+    <p>aaa</p>
+    <p>aaa</p>
+    <p>aaa</p>
+    <p>aaa</p>
+    <p>aaa</p>
+    <p>aaa</p>
+    <p>aaa</p>
+  </div>
+</div>
+
+<script>
+setTimeout(function(){
+  
+  const p = document.getElementById('atext');
+  console.log([p.style.width, p.style.height]);
+
+  const styleP = window.getComputedStyle(p);
+  console.log([styleP.width, styleP.height]);
+
+  console.log([p.clientWidth, p.clientHeight]);
+  console.log([p.offsetWidth, p.offsetHeight]);
+  console.log([p.scrollWidth, p.scrollHeight]);
+
+  console.log('---------')
+
+  console.log([outer.clientWidth, outer.clientHeight]);
+  console.log([outer.offsetWidth, outer.offsetHeight]);
+  console.log([outer.scrollWidth, outer.scrollHeight]);
+
+  console.log('---------')
+
+  console.log([inner.clientWidth, inner.clientHeight]);
+  console.log([inner.offsetWidth, inner.offsetHeight]);
+  console.log([inner.scrollWidth, inner.scrollHeight]);  
+
+}, 100);
+
+</script>

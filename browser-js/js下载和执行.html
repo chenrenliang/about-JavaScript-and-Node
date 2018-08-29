@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./app.js"></script>
+</head>
+<body>
+    <script>    
+        render('张三', '李四', '王五')
+    </script>
+</body>
+<script>
+ window.addEventListener('DOMContentLoaded', () => {
+     const footer = document.createElement('footer')
+     footer.textContent = '渲染结束'
+
+     document.body.appendChild(footer)
+ })
+
+</script>
+</html>

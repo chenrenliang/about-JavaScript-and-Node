@@ -1,0 +1,46 @@
+<style>
+    button {
+        font-size: 24px;
+        margin: 6px 0;
+    }
+
+</style>
+<ul>
+    <li><button>点我</button></li>
+    <li><button>点我</button></li>
+    <li><button>点我</button></li>
+    <li><button>点我</button></li>
+    <li><button>点我</button></li>
+</ul>
+<script>
+    var buttons = document.querySelectorAll('button')
+
+    // for(var i = 0; i < buttons.length; i++) {
+    //     buttons[i].onclick = evt => console.log('点击了第 ' + i + '个按钮')
+    // }
+    //button[0]
+    //..
+    //button[4]  => function
+    //最后i => 5 
+    //因此点击每个都 => 5
+
+    // for(let  i = 0; i < buttons.length; i++) {
+    //     buttons[i].onclick = evt => console.log('点击了第 ' + i + '个按钮')
+    // }
+
+    //   for(var i = 0; i < buttons.length; i++) {
+    //       buttons[i].onclick = (function(j){
+    //           return function(evt){
+    //               console.log('点击了第 ' + j + '个按钮')
+    //           }
+    //       })(i);
+    //   }
+        
+        for(var i = 0; i < buttons.length; i++) {
+            buttons[i].onclick = (function(i){
+                console.log('点击了第 '  + i + '个按钮')
+            }).bind(null, i)
+        }
+
+
+</script>

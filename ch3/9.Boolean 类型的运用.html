@@ -1,0 +1,80 @@
+<style>
+    #ball {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+        background: red;
+        position: absolute;
+        left: 100px;
+        top: 100px;
+        cursor: pointer;
+    }
+
+</style>
+<div id="ball"></div>
+<script>
+    function applyAnimate(el, duration, options, easing) {
+        var startTime = Date.now()
+
+        if(typeof el === 'string') el = document.querySelector(el)
+
+        duration = duration || 1000;
+        options = options || {
+            property: 'x',
+            distance: 100
+        };
+
+        easing = easing || function(p) { return p; };
+
+
+        requestAnimationFrame(function update() {
+            var now = Date.now()
+            var p = (now - startTime) / duration;
+
+            var ep = easing(p)
+
+            if(typeof options !== 'function') { //要么为function | object
+                const {property, distance} = options;
+                const translate = []
+
+                if(property.indexOf('x') >= 0) {
+                    translate.push(`translateX(${distance * ep}px)`)
+                }
+                if(property.indexOf('y') >= 0) {
+                    translate.push(`translateY(${distance * ep}px)`);
+                }
+
+                el.style.transform = translate.join(' ')
+            } else {
+                options(el, ep, p)
+            }
+
+            if(p <= 1) {
+                requestAnimationFrame(update)
+            }
+
+        })
+
+    }
+
+
+    document.querySelector('#ball').onclick = function(){
+        // applyAnimate('#ball')
+
+        applyAnimate('#ball', 1000, function(el, ep, p) {
+            //options => function (el ep p) 均已知
+            const distance = 100, pi2 = Math.PI * 2;
+
+            el.style.transform = `translate(${distance * Math.cos(pi2 * ep)}px,${distance * Math.sin(pi2 * ep)}px)`
+        })
+    }
+
+
+
+
+
+
+
+
+</script>

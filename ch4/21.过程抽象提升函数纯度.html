@@ -1,0 +1,32 @@
+<ul id="datalist">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+</ul>
+<script>
+    function setColor(el, color){
+        el.style.color = color;
+    }
+
+    // function setColors(els, color){
+    //     Array.from(els).map(el => setColor(el, color))
+    // }
+
+    function __multi__(fn){
+        return function(arrayLike, ...args){
+            return Array.from(arrayLike).map(item => fn(item, ...args))
+        }
+    }
+
+    let setColors = __multi__(setColor)
+
+
+    // setColors(document.querySelectorAll('#datalist > li'), 'red')
+    setColors(document.querySelectorAll('#datalist > li'), 'blue')
+
+
+</script>

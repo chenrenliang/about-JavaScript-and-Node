@@ -1,0 +1,26 @@
+<body>
+    <script>
+       function addMessage(message) {
+           message = message || 'default message'
+
+           var el = document.createElement('p')
+           el.innerHTML = message;
+
+           document.body.appendChild(el)
+       } 
+
+       addMessage()
+       addMessage('hello world')
+
+       function addMessage2(message = 'default message'){
+           var el = document.createElement('p')
+           el.innerHTML = message; 
+
+           document.body.appendChild(el)
+       }
+
+       addMessage2()
+       addMessage2('hello crl')
+        
+    </script>
+</body>

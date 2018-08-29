@@ -1,0 +1,81 @@
+<style>
+    ul li {
+        padding: 5px;
+    }
+
+    ul *, button {
+        font-size: 18px;
+    }
+
+</style>
+<ul>
+    <li>
+        <label for="name">姓名</label>
+        <input type="text" id="name" name="name">
+    </li>
+    <label for="age">年龄</label>
+    <select name="age" id="age">
+        <option>80后</option>
+        <option>90后</option>
+        <option>00后</option>
+        <option>其他</option>
+    </select>
+</ul>
+<button id="confirm" type="submit">提交</button>
+<script>
+    const view = {
+        nameEl: document.getElementById('name'),
+        ageEl: document.getElementById('age'),
+        submitBtn: document.getElementById('confirm')
+    }
+
+
+
+    view.submitBtn.addEventListener('click', evt => {
+        console.log('你要提交的数据是: ' + [user.name, user.age])
+        evt.preventDefault()
+    })
+
+    function User(name, age) {
+        this.name = name 
+        this.age = age 
+    }
+
+    User.prototype.bind = function(view){ //注意=> 函数
+        const  { name, age } = this;
+        // console.log(name, age)
+        Object.defineProperty(this, 'name',{
+            set(name) {
+                view.nameEl.value = name 
+            },
+            get(){
+                return view.nameEl.value
+            }
+        })
+        
+        Object.defineProperty(this, 'age', {
+            set(age) {
+                const ageOptions = Array.from(view.ageEl.options).map(item => item.innerHTML)
+                // console.log(ageOptions)
+                
+                if(ageOptions.indexOf(age) === '-1') {
+                    throw new Error('无效的年龄格式')
+                }
+                view.ageEl.value = age
+            },
+            get() {
+                return view.ageEl.value 
+            }
+        })
+
+        this.name = name
+        this.age = age 
+    }
+
+
+    const user = new User('crl', '80后')
+    user.bind(view)
+
+
+
+</script>

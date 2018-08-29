@@ -1,0 +1,17 @@
+{
+  "name": "My_Final_FE_Code",
+  "version": "1.0.0",
+  "description": "",
+  "main": "1.简单HTTP请求和响应.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "checksum": "^0.1.1",
+    "node-json2html": "^1.2.0",
+    "through2": "^2.0.3"
+  }
+}

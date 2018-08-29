@@ -1,0 +1,35 @@
+<body>
+    <div style="width: 100px;height: 100px;border:1px solid #ccc;"></div>
+    <script>
+        function add(){
+            var args = [].slice.call(arguments) //Array.from(arguments)
+            return args.reduce((a, b) => a + b)
+        }    
+
+        console.log(add(1, 2, 3, 4)) //10
+
+        function setStyle(el, property, value){
+            if(typeof el === 'string') el = document.querySelector(el)
+
+            if(typeof property === 'object') {
+                for(let key in property) {
+                    setStyle(el, key, property[key])
+                }
+            } else {
+                el.style[property] = value;
+            }
+
+        }
+
+        console.log(setStyle.length) //3
+        setStyle('div', 'color', 'red')
+
+        setTimeout(function(){
+            setStyle('div', {
+                'fontSize': '40px',
+                'backgroundColor': '#0f0'
+            })
+        }, 1000)
+        
+    </script>
+</body>

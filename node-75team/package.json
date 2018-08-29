@@ -1,0 +1,16 @@
+{
+  "name": "node-75team",
+  "version": "1.0.0",
+  "description": "",
+  "main": "1.使用TCP处理HTTP请求.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "checksum": "^0.1.1",
+    "node-json2html": "^1.2.0"
+  }
+}

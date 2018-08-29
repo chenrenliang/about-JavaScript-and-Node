@@ -1,0 +1,21 @@
+<script src="https://lib.baomitu.com/axios/0.16.2/axios.js"></script>
+<div>
+    <input type="text" value='hello' id='t'>
+    <input id="submitBtn" type="submit">
+</div>
+<img src="" alt="未加载图片" id="gaobai">
+<script>
+    const api =  'https://test.h5jun.com/index/gaobai?text='
+
+    submitBtn.onclick = async evt => {
+        evt.preventDefault()
+
+        let { data } = await axios.get(api + t.value)
+
+        gaobai.src = 'data:image/jpeg;base64,' + data.data 
+
+        console.log('data:image/ipeg;base64,' + data.data)
+    }
+
+
+</script>

@@ -1,0 +1,56 @@
+<style>
+    ul.traffic li {
+        width: 50px;
+        height: 50px;
+        background: #aaa;
+        border-radius: 25px;
+        list-style: none;
+        margin: 5px 0;
+    }
+    ul.traffic.stop li:nth-child(1){
+        background: red;
+    }
+    ul.traffic.wait li:nth-child(2) {
+        background: #fe4;
+    }
+    ul.traffic.pass li:nth-child(3) {
+        background: green;
+    }
+    
+    </style>
+    <ul class="traffic stop">
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+<script>
+    const traffic = document.querySelector('.traffic')
+
+    function wait(delay){
+        return new Promise((resolve) => {
+            setTimeout(resolve, delay)
+        })
+    }
+
+    function loop(){
+        wait(3000)
+            .then(() => {
+                traffic.className = 'traffic pass'
+                return wait(3000)
+            }).then(() => {
+                traffic.className = 'traffic wait'
+                return wait(1000)
+            }).then(() => {
+                traffic.className = 'traffic stop'
+                loop()
+            })
+
+    }
+
+    loop()
+
+
+
+
+
+</script>    

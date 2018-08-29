@@ -1,0 +1,33 @@
+<style>
+    #brick {
+        width: 50px;
+        height: 50px;
+        background: green;
+        transform-origin: 50% 50%;
+        position: absolute;
+        left: 100px;
+        top: 100px;
+    }
+
+</style>
+<div id="brick"></div>
+
+<script>
+    const brick = document.getElementById('brick')
+
+    brick.addEventListener('click', function(){
+        let startTime = Date.now()
+        let cycle = 2000;
+
+        requestAnimationFrame(function step(){
+            let p = (Date.now() - startTime) / cycle;
+
+            brick.style.transform = `rotate(${360*p}deg)`;
+
+            requestAnimationFrame(step)
+
+        })
+    })
+
+
+</script>

@@ -1,0 +1,77 @@
+<script>
+ class MyPromise {
+     constructor(fn) {
+         const _this = this 
+
+         this.successResult = null 
+         this.failedResult = null 
+
+         this.state = ''
+
+         this.queue = []
+
+         fn(function(...args){
+             _this.successResult = args //数组
+             _this.state = 'success'
+            
+             _this.queue.forEach(json => json.fn1(...args))
+            
+         }, function(...args){
+
+             _this.failedResult = args 
+             _this.state = 'failed'
+            
+            _this.queue.forEach(json => json.fn2(...args))
+         })
+     }
+
+     then(fn1, fn2) {
+   
+         if(this.state === 'success') {
+             fn1(...this.successResult)
+
+         } else if(this.state === 'failed') {
+             fn2(...this.failedResult)
+             
+         } else {
+             this.queue.push({fn1, fn2})
+         }
+     }
+
+     static all (arr) {
+         let arr = []
+
+         return new MyPromise((resolve, reject) => {
+             let i = 0
+
+             function next(){
+                 arr[i].then(res => arr.push(res))
+
+                 i++
+
+                 if(i >= arr.length) {
+                        resolve(arr)
+                 } else {
+                     next()
+                 }
+             }
+
+         }, reject)
+     }
+
+
+ }
+
+ const p = new MyPromise((resolve, reject) => {
+     setTimeout(() => {
+         resolve(12)
+     }, 1000)
+ })
+
+ console.log(p)
+
+p.then(num => console.log(num))
+
+
+
+</script>

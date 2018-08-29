@@ -1,0 +1,54 @@
+<style>
+ul.traffic li {
+    width: 50px;
+    height: 50px;
+    background: #aaa;
+    border-radius: 25px;
+    list-style: none;
+    margin: 5px 0;
+}
+ul.traffic.stop li:nth-child(1){
+    background: red;
+}
+ul.traffic.wait li:nth-child(2) {
+    background: #fe4;
+}
+ul.traffic.pass li:nth-child(3) {
+    background: green;
+}
+
+</style>
+<ul class="traffic stop">
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+
+<script>
+    const traffic = document.querySelector('.traffic')
+
+    function loop(){
+        setTimeout(() => {
+            const start = Date.now()
+            traffic.className = 'traffic pass'
+            setTimeout(() => {
+                const end1 = Date.now()
+                console.log(end1 - start, '1') //3000
+                traffic.className = 'traffic wait'
+                
+                setTimeout(() => {
+                    console.log(Date.now() - end1, '2') //1000
+                    traffic.className = 'traffic stop'
+
+                    loop()
+                }, 1000)
+
+//从上次结束开始计算
+            }, 3000)
+        }, 3000)
+
+    }
+
+    loop()
+
+</script>
